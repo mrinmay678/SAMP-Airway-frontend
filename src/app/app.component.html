@@ -24,30 +24,21 @@
 </nav>
 
 
-<body class=>
+<body class="flex-grow">
     <app-listing></app-listing>
 </body>
 
 
-<table class="border border-slate-600 content-center ">
-<tr>
-  <th class= "border border-slate-600" *ngFor="let columns of headers" scope="col">{{columns}}</th></tr>
-
-<tr *ngFor="let row of rows">
-  <td *ngFor="let column of headers" scope ='col'>{{row}}</td></tr>
-
-</table>
 
 
-
-<!--footer class="w-100 bg-gray-800 bottom-0 text-[#ffffff] flex flex-col min-h-screen flex-grow">
-    <div class="max-w-3xl mx-auto py-6">
+<footer class="w-100 bg-gray-800 bottom-0 text-[#ffffff] fixed">
+    <div class="max-w-3xl mx-auto py-6 flex items-center justify-center">
         <h1>Thank you for visiting SAMP Airlines Website</h1>
     </div>
 </footer>
 
 
-<--
+<!--
             <hr class="h-px mt-6 bg-gray-700 border-none">
         <div class="flex flex-col items-center justify-between mt-6 md:flex-row">
             <div>
