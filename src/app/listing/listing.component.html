@@ -1,20 +1,26 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
-
 <section id="search-section">
-  <form class="flex flex-nowrap place-content-center gap-2.5 bg-gray-800" method="post">
-    <div class="text-white gap-x-4">
+  <form class="flex flex-nowrap place-content-center gap-6 bg-gray-800 pb-10" #searchFlight="ngForm" (ngSubmit)="getFlight(searchFlight.value)">
+    <div class="flex flex-row items-center text-center text-white gap-x-4">
       <label for="#source">Source</label>
-      <input id="source" name="source" type="text" class="bg-grey p-2 rounded-lg shadow-inner place-content-center border-2 text-[#000000]">
+      <select ngModel id="source" name="source" type="text" class="bg-grey p-2 rounded-lg shadow-inner place-content-center border-2 text-[#000000] w-auto rounded-md" required>
+        <optgroup label={{loc.country}} *ngFor="let loc of locations">
+          <option *ngFor="let city of loc.cities" value={{city.id}}>{{city.name}}</option>
+        </optgroup>
+      </select>
     </div>
-    <div class="text-white gap-x-4">
+    <div class="flex flex-row items-center text-center text-white gap-x-4">
       <label for="#destination">Destination</label>
-      <input id="destination" name="destination" type="text" class="bg-grey p-2 rounded-lg shadow-inner place-content-center border-2 text-[#000000]">
+      <select ngModel id="destination" name="destination" type="text" class="bg-grey p-2 rounded-lg shadow-inner place-content-center border-2 text-[#000000] w-auto rounded-md" required>
+        <optgroup label={{loc.country}} *ngFor="let loc of locations">
+          <option *ngFor="let city of loc.cities" value={{city.id}}>{{city.name}}</option>
+        </optgroup>
+      </select>
     </div>
-    <div class="text-white gap-x-4">
+    <div class="flex flex-row items-center text-center text-white gap-x-4">
       <label for="#departure">Select Departure Date</label>
-      <input type="date" name="departure" id="departure" class="text-[#000000]">
+      <input ngModel type="date" name="departure" id="departure" class="flex items-center text-center text-[#000000] w-auto rounded-md" min={{today_date}} required>
     </div>
-    <input type="submit" name="search" id="search" value="Search" class="text-white">
+    <input type="submit" name="search" id="search" value="Search" class="text-white bg-[#4d4dff] px-4 py-2.5 rounded-md cursor-pointer">
   </form>
 
 
@@ -28,7 +34,6 @@
       <td  >{{row.destination}}</td>
       <td  >{{row.time_of_departure}}</td>
       <td  >{{row.cost}}</td>
-
     </tr>
   </table>
 
