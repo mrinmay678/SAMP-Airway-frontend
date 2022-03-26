@@ -1,6 +1,3 @@
-<script src="./TW-ELEMENTS-PATH/dist/js/index.min.js"></script>
-
-<!-- Navbar -->
 <nav class="bg-gray-800">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
@@ -27,20 +24,30 @@
 </nav>
 
 
-<!-- Body -->
-<body class="flex flex-col min-h-screen flex-grow">
+<body class=>
     <app-listing></app-listing>
 </body>
 
-<!-- Footer -->
-<footer class="w-100 bg-gray-800 bottom-0 text-[#ffffff]">
+
+<table class="border border-slate-600 content-center ">
+<tr>
+  <th class= "border border-slate-600" *ngFor="let columns of headers" scope="col">{{columns}}</th></tr>
+
+<tr *ngFor="let row of rows">
+  <td *ngFor="let column of headers" scope ='col'>{{row}}</td></tr>
+
+</table>
+
+
+
+<!--footer class="w-100 bg-gray-800 bottom-0 text-[#ffffff] flex flex-col min-h-screen flex-grow">
     <div class="max-w-3xl mx-auto py-6">
         <h1>Thank you for visiting SAMP Airlines Website</h1>
     </div>
 </footer>
 
 
-<!--
+<--
             <hr class="h-px mt-6 bg-gray-700 border-none">
         <div class="flex flex-col items-center justify-between mt-6 md:flex-row">
             <div>
@@ -87,4 +94,4 @@
         </div>
       </div>
 
- --> 
+ -->
