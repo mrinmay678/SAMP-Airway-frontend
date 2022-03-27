@@ -1,3 +1,59 @@
+<!-- Sign Up -->
+
+<div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+    id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog relative w-auto pointer-events-none">
+        <div
+            class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+        <div
+            class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+            <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">Modal title</h5>
+            <button type="button"
+            class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+            data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body relative p-4">
+            Modal body text goes here.
+        </div>
+        <div
+            class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+            <button type="button" class="modal-close" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="modal-save">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sign In -->
+
+<div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+    id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
+    <div class="modal-dialog relative w-auto pointer-events-none">
+        <div
+            class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+        <div
+            class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+            <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">Modal title</h5>
+            <button type="button"
+            class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+            data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body relative p-4">
+            Modal body text goes here.
+        </div>
+        <div
+            class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+            <button type="button" class="modal-close" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="modal-save">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--  -->
+
+
 <nav class="bg-gray-800 py-6">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="flex-1 flex items-center justify-between sm:items-stretch">
@@ -5,92 +61,23 @@
                 <h1 class="text-white text-2xl uppercase font-semibold">SAMP Airways</h1>
                 <img src="assets/logo.png" alt="SAMP Airways" class="h-12 w-auto">
             </div>
-            <div class="hidden sm:block sm:ml-6">
+            <div class="hidden md:block">
                 <div class="flex space-x-4">
-                    <a href="/" class="hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium">Home</a>
-                    <a href="#" class="hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium" *ngIf="!userLoggedIn">SignUp</a>
-                    <a routerLink="login-component" class="hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium" *ngIf="!userLoggedIn">Login</a>
-                    <a routerLink="login-component" class="hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium" *ngIf="userLoggedIn">Logout</a>
+                    <a class="cursor-pointer hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium" *ngIf="!userLoggedIn" data-bs-toggle="modal" data-bs-target="#signupModal">SignUp</a>
+                    <a class="cursor-pointer hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium" *ngIf="!userLoggedIn" data-bs-toggle="modal" data-bs-target="#signinModal">Login</a>
+                    <a class="hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium" *ngIf="userLoggedIn">Logout</a>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="sm:hidden" id="mobile-menu">
-        <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
-        </div>
-        <div class="px-2 pt-2 pb-3 space-y-1" *ngIf="!userLoggedIn">
-            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">SignUp</a>
-        </div>
-        <div class="px-2 pt-2 pb-3 space-y-1" *ngIf="!userLoggedIn">
-            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Login</a>
-        </div>
-        <div class="px-2 pt-2 pb-3 space-y-1" *ngIf="userLoggedIn">
-            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Logout</a>
         </div>
     </div>
 </nav>
 
-
 <body class="flex-grow">
-    <app-listing></app-listing>
+    <router-outlet></router-outlet>
 </body>
 
-
-
-
-<footer class="w-100 bg-gray-800 bottom-0 text-[#ffffff] fixed">
+<footer class="w-full bg-gray-800 bottom-0 text-[#ffffff] fixed">
     <div class="max-w-3xl mx-auto py-6 flex items-center justify-center">
         <h1>Thank you for visiting SAMP Airlines Website</h1>
     </div>
 </footer>
-
-
-<!--
-            <hr class="h-px mt-6 bg-gray-700 border-none">
-        <div class="flex flex-col items-center justify-between mt-6 md:flex-row">
-            <div>
-                <a href="#" class="text-xl font-bold text-gray-100 hover:text-gray-400">Mrinmay Bhattacharya</a><br>
-            </div>
-            <div class="flex mt-4 md:m-0">
-                <div class="-mx-4">
-                    <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">About</a>
-                    <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">Contact</a>
-                </div>
-            </div>
-        </div>
-        <div class="flex flex-col items-center justify-between mt-6 md:flex-row">
-            <div>
-                <a href="#" class="text-xl font-bold text-gray-100 hover:text-gray-400">Aniruddha Nath</a><br>
-            </div>
-            <div class="flex mt-4 md:m-0">
-                <div class="-mx-4">
-                <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">About</a>
-                <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">Contact</a>
-            </div>
-        </div>
-    </div>
-    <div class="flex flex-col items-center justify-between mt-6 md:flex-row">
-        <div>
-            <a href="#" class="text-xl font-bold text-gray-100 hover:text-gray-400">Parijat Guha</a><br>
-        </div>
-        <div class="flex mt-4 md:m-0">
-            <div class="-mx-4">
-                <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">About</a>
-                <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">Contact</a>
-            </div>
-        </div>
-    </div>
-    <div class="flex flex-col items-center justify-between mt-6 md:flex-row">
-        <div>
-            <a href="#" class="text-xl font-bold text-gray-100 hover:text-gray-400">Sattwama Basu</a><br>
-        </div>
-        <div class="flex mt-4 md:m-0">
-            <div class="-mx-4">
-                <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">About</a>
-                <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">Contact</a>
-          </div>
-        </div>
-      </div>
-
- -->
