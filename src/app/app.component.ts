@@ -6,10 +6,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  
   title = 'frontend';
   userLoggedIn = false;
 
-  login(data:any){
+  login(data:any):void{
+    console.log(data);
+  }
+
+  signup(data:any) :void{
     console.log(data);
   }
 }
