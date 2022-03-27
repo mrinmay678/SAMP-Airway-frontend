@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,11 +11,49 @@ export class AppComponent {
   title = 'frontend';
   userLoggedIn = false;
 
+  constructor(public authService: AuthService) {
+      if(localStorage.getItem('access-token') != null){
+        this.userLoggedIn = true;
+      }
+  }
+
   login(data:any):void{
-    console.log(data);
+    try{
+      this.authService.login(data).subscribe(res => {
+        this.userLoggedIn = true;
+        localStorage.setItem('access-token', res.data.access_token);
+        localStorage.setItem('refresh-token', res.data.refresh_token);
+      });
+    }
+    catch(e:any){
+      if(e.message == "Access Token Expired"){
+        this.authService.refreshToken({ refresh_token : localStorage.getItem("refresh-token")}).subscribe(res => {
+          this.userLoggedIn = true;
+          localStorage.setItem('access-token', res.data.access_token);
+        })
+      }
+      else {
+        console.log(e.message);
+      }
+    }
   }
 
   signup(data:any) :void{
-    console.log(data);
+    if(data.password == data.confirm_password){
+      this.authService.signup(data).subscribe(res => {
+        this.userLoggedIn = true;
+        localStorage.setItem('access-token', res.data.access_token);
+        localStorage.setItem('refresh-token', res.data.refresh_token);
+      });
+    }
+    else{
+      alert("Password and Confirm Password does not match");
+    }
+  }
+
+  logout():void{
+    localStorage.removeItem('access-token');
+    localStorage.removeItem('refresh-token');
+    this.userLoggedIn = false;
   }
 }
