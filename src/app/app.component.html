@@ -1,1 +1,96 @@
-<app-listing></app-listing>
+<nav class="bg-gray-800 py-6">
+    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+        <div class="flex-1 flex items-center justify-between sm:items-stretch">
+            <div class="flex-shrink-0 flex items-center">
+                <h1 class="text-white text-2xl uppercase font-semibold">SAMP Airways</h1>
+                <img src="assets/logo.png" alt="SAMP Airways" class="h-12 w-auto">
+            </div>
+            <div class="hidden sm:block sm:ml-6">
+                <div class="flex space-x-4">
+                    <a href="/" class="hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium">Home</a>
+                    <a href="#" class="hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium" *ngIf="!userLoggedIn">SignUp</a>
+                    <a routerLink="login-component" class="hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium" *ngIf="!userLoggedIn">Login</a>
+                    <a routerLink="login-component" class="hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium" *ngIf="userLoggedIn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sm:hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
+        </div>
+        <div class="px-2 pt-2 pb-3 space-y-1" *ngIf="!userLoggedIn">
+            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">SignUp</a>
+        </div>
+        <div class="px-2 pt-2 pb-3 space-y-1" *ngIf="!userLoggedIn">
+            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Login</a>
+        </div>
+        <div class="px-2 pt-2 pb-3 space-y-1" *ngIf="userLoggedIn">
+            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Logout</a>
+        </div>
+    </div>
+</nav>
+
+
+<body class="flex-grow">
+    <app-listing></app-listing>
+</body>
+
+
+
+
+<footer class="w-100 bg-gray-800 bottom-0 text-[#ffffff] fixed">
+    <div class="max-w-3xl mx-auto py-6 flex items-center justify-center">
+        <h1>Thank you for visiting SAMP Airlines Website</h1>
+    </div>
+</footer>
+
+
+<!--
+            <hr class="h-px mt-6 bg-gray-700 border-none">
+        <div class="flex flex-col items-center justify-between mt-6 md:flex-row">
+            <div>
+                <a href="#" class="text-xl font-bold text-gray-100 hover:text-gray-400">Mrinmay Bhattacharya</a><br>
+            </div>
+            <div class="flex mt-4 md:m-0">
+                <div class="-mx-4">
+                    <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">About</a>
+                    <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col items-center justify-between mt-6 md:flex-row">
+            <div>
+                <a href="#" class="text-xl font-bold text-gray-100 hover:text-gray-400">Aniruddha Nath</a><br>
+            </div>
+            <div class="flex mt-4 md:m-0">
+                <div class="-mx-4">
+                <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">About</a>
+                <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">Contact</a>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col items-center justify-between mt-6 md:flex-row">
+        <div>
+            <a href="#" class="text-xl font-bold text-gray-100 hover:text-gray-400">Parijat Guha</a><br>
+        </div>
+        <div class="flex mt-4 md:m-0">
+            <div class="-mx-4">
+                <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">About</a>
+                <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">Contact</a>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col items-center justify-between mt-6 md:flex-row">
+        <div>
+            <a href="#" class="text-xl font-bold text-gray-100 hover:text-gray-400">Sattwama Basu</a><br>
+        </div>
+        <div class="flex mt-4 md:m-0">
+            <div class="-mx-4">
+                <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">About</a>
+                <a href="#" class="px-4 text-sm text-gray-100 font-medium hover:text-gray-400">Contact</a>
+          </div>
+        </div>
+      </div>
+
+ -->
