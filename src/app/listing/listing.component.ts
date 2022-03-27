@@ -34,6 +34,6 @@ export class ListingComponent implements OnInit {
     });
   }
 
-  headers=["Flight Name","Departure Time","Arrival Time","Cost","Book Now"];
+  headers=["Flight Name","Departure Time","Arrival Time","Cost"];
 
 }

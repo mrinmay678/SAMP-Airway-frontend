@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FlightsComponent } from './flights/flights.component';
 import { ListingComponent } from './listing/listing.component';
-import { LoginComponent } from './login-component/login.component';
 
 const routes: Routes = [
   {
-    path:'login-component',
-    component:LoginComponent
-
+    path: '',
+    component: ListingComponent
+  },
+  {
+    path: 'flight/:id',
+    component: FlightsComponent
   }
 ];
 
@@ -16,3 +19,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+export const routingComponents = [ListingComponent, FlightsComponent];
