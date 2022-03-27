@@ -7,11 +7,12 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'frontend';
-
+  userLoggedIn = false;
   constructor(private router:Router){}
 
   goToPage(pageName:any) :void
   {
     this.router.navigate([`${pageName}`]);
   }
+
 }

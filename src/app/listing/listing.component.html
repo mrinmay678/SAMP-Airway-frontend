@@ -24,16 +24,16 @@
   </form>
 
 
-  <table class="border border-slate-600 text-center justify-center ">
+  <table class="border border-slate-600 text-center justify-center " *ngIf="tableData">
     <tr class="">
       <th class= "border border-slate-600 w-60 px-6 py-3" *ngFor="let columns of headers" scope="col">{{columns}}</th>
     </tr>
     <tr *ngFor="let row of rows" class="px-6 py-6" >
       <td  >{{row.flight_name}}</td>
-      <td  >{{row.source}}</td>
-      <td  >{{row.destination}}</td>
-      <td  >{{row.time_of_departure}}</td>
+      <td  >{{row.dept}}</td>
+      <td  >{{row.arr}}</td>
       <td  >{{row.cost}}</td>
+      <td  ><a href="http://abc.com/flights/{{row.id}}">View Details</a></td>
     </tr>
   </table>
 

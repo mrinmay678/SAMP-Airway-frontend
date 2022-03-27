@@ -9,11 +9,12 @@ import { ListingService } from './listing.service';
 export class ListingComponent implements OnInit {
 
   locations = new Array<any>();
+  rows = new Array<any>();
+  tableData = false;
 
   constructor(public listingService: ListingService) { }
   ngOnInit(): void {
     this.listingService.getLocations().subscribe(res => {
-      console.log(res);
       this.locations = res.data.locations;
     });
   }
@@ -26,18 +27,13 @@ export class ListingComponent implements OnInit {
 
   today_date = this.dd + '/' + this.mm + '/' + this.yyyy;
 
-  getFlight(data:any){
-    console.log(data.source);
+  getFlight(data:any) :void{
+    this.listingService.getFlights(data).subscribe(res => {
+      this.tableData = true;
+      this.rows = res.data.flights;
+    });
   }
 
-  headers=["Flight name   ","Source   ","Destination   ","Time of Departure   ","Cost   "];
-  rows=[
-    {"flight_name":'SpiceJet',"source":'Kolkata',"destination":'Delhi',"time_of_departure":'11:00',"cost":'Rs 3999'},
-    {"flight_name":'Air India',"source":'Kolkata',"destination":'Mumbai',"time_of_departure":'13:00',"cost":'Rs 4399'},
-    {"flight_name":'Indigo',"source":'Kolkata',"destination":'Hyderabad',"time_of_departure":'09:00',"cost":'Rs 2799'},
-    {"flight_name":'Air Asia',"source":'Kolkata',"destination":'Bangalore',"time_of_departure":'16:00',"cost":'Rs 4999'},
-    {"flight_name":'Vistara',"source":'Kolkata',"destination":'Delhi',"time_of_departure":'10:00',"cost":'Rs 5399'}
-  ];
-  
-  
+  headers=["Flight Name","Departure Time","Arrival Time","Cost","Book Now"];
+
 }
