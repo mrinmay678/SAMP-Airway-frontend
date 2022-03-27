@@ -1,0 +1,1 @@
+web: ng serve --open --port 4200
