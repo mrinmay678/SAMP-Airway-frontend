@@ -9,6 +9,7 @@ export class AppComponent {
   title = 'frontend';
   userLoggedIn = false;
 
-  
-
+  login(data:any){
+    console.log(data);
+  }
 }
