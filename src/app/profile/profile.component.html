@@ -7,16 +7,16 @@
       <p class="mt-4 max-w-2xl text-xl font-bold text-gray-900 "> Mobile: <span class="font-semibold">{{phone_number}}</span> </p>
       <!-- <p class="mt-4 max-w-2xl text-xl font-bold text-gray-900 "> Booking Status: <span class="font-semibold">{{booking_status}}</span> </p> -->
 
-      <!-- <table class="border border-slate-600 w-full text-center justify-center" *ngIf="tableData">
+      <table class="border border-slate-600 w-full text-center justify-center" *ngIf="tableData">
         <tr>
           <th class= "border border-slate-600 w-60 px-4 md:px-6 py-3" *ngFor="let columns of headers" scope="col">{{columns}}</th>
         </tr>
         <tr *ngFor="let row of rows" class="px-6 py-6" >
-          <td><a href="/flight/{{row.id}}">{{row.flight_name}}</a></td>
-          <td><a href="/flight/{{row.id}}">{{row.source}}</a></td>
-          <td><a href="/flight/{{row.id}}">{{row.dest}}</a></td>
-          <td><a href="/flight/{{row.id}}">{{row.depart}}</a></td>
+          <td>{{row.flight_name}}</td>
+          <td>{{row.source}}</td>
+          <td>{{row.destination}}</td>
+          <td>{{row.depart}}</td>
         </tr>
-    </table> -->
+    </table>
 </div>
 
