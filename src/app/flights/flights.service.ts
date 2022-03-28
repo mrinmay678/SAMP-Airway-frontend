@@ -13,7 +13,7 @@ export class FlightsService {
     
     let params:any = new HttpParams();
     params = params.append('id', id);
-    return this.http.get<any>('https://4ddcfcfe-74f3-43bc-a711-332c6afec832.mock.pstmn.io/flight', {params: params});
+    return this.http.get<any>('https://mock-server-samp.herokuapp.com/flight', {params: params});
   }
 
 }

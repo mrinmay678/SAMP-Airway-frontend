@@ -33,8 +33,15 @@ export class AppComponent {
           localStorage.setItem('access-token', res.data.access_token);
         })
       }
+      else if(e.message == "Wrong Password") {
+        alert("Wrong Password");
+      }
+      else if(e.message == "User Not Found") {
+        alert("User Not Found");
+      }
       else {
-        console.log(e.message);
+        alert("Something went wrong");
+        console.log(e);
       }
     }
   }
