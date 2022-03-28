@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  
+
   title = 'frontend';
   userLoggedIn = false;
 
@@ -49,6 +49,10 @@ export class AppComponent {
     else{
       alert("Password and Confirm Password does not match");
     }
+  }
+
+  profile():void{
+
   }
 
   logout():void{
