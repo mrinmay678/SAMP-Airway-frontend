@@ -24,7 +24,7 @@
     <input type="submit" name="search" id="search" value="Search" class="w-1/2 md:w-auto text-white bg-[#4d4dff] px-4 py-2.5 rounded-md cursor-pointer">
   </form>
 
-  <p class="text-med text-xl my-3 ml-6" *ngIf="tableData" >*Note:- Click on table data to checkout</p>
+  <p class="text-med text-xl my-3 ml-6" *ngIf="tableData" ></p>
   <table class="border border-slate-600 w-full text-center justify-center" *ngIf="tableData">
     <tr>
       <th class= "border border-slate-600 w-60 px-4 md:px-6 py-3" *ngFor="let columns of headers" scope="col">{{columns}}</th>
