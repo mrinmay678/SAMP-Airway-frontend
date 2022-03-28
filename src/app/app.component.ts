@@ -52,6 +52,10 @@ export class AppComponent {
     }
   }
 
+  profile():void{
+
+  }
+
   logout():void{
     localStorage.removeItem('access-token');
     localStorage.removeItem('refresh-token');

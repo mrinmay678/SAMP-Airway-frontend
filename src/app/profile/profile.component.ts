@@ -8,8 +8,15 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
+
+  rows = new Array<any>();
   constructor() { }
 
+  name=""
+  email=""
+  phone_number=""
+
+  
   ngOnInit(): void {
   }
 
