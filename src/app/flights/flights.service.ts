@@ -16,4 +16,8 @@ export class FlightsService {
     return this.http.get<any>('https://mock-server-samp.herokuapp.com/flight', {params: params});
   }
 
+  public bookTicket(data:any): Observable<any> {
+    return this.http.post<any>('https://mock-server-samp.herokuapp.com/book-ticket', data);
+  }
+
 }
