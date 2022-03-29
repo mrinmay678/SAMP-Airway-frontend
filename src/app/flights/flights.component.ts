@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { FlightsService } from './flights.service';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-flights',
@@ -18,6 +19,7 @@ export class FlightsComponent implements OnInit {
   adult:number = 0;
   child:number = 0;
   fare:number = 0;
+  passengers: FormArray = new FormArray([]);
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = params.get('id');
@@ -42,5 +44,10 @@ export class FlightsComponent implements OnInit {
     // });
     confirm("Do you want to book the tickets?");
   }
+
+  onAddPassenger() :void {
+    this.passengers.push({
+      
+    });
 
 }
