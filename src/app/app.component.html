@@ -1,146 +1,17 @@
-<!-- Sign Up -->
-
-<div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
-    <div class="modal-dialog relative w-auto pointer-events-none">
-        <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-            <div class="modal-header flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                <button type="button" class="modal-close" data-bs-dismiss="modal">Close</button>
-            </div>
-            <div class="modal-body relative p-4">
-                <div class="bg-grey-lighter min-h-screen flex flex-col">
-                    <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-                        <form class="bg-white px-6 py-8 rounded shadow-md text-black w-full flex flex-col gap-4  " #signupForm="ngForm" (ngSubmit)="signup(signupForm.value)">
-                            <h1 class="mb-8 text-3xl text-center">Sign up</h1>
-                            <!-- <div class="magicScroll" data-options="loop:rewind">
-                                <label class="header">Profile Pic:</label>
-                                <input id="image" type="file" name="profile_pic" placeholder="Photo" required=" " capture>
-                            </div> -->
-                            <input ngModel
-                                type="text"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
-                                name="first_name"
-                                placeholder="First Name" >
-                            <input ngModel
-                                type="text"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
-                                name="last_name"
-                                placeholder="Last Name">
-                            <input ngModel
-                                type="date"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
-                                name="date_of_birth"
-                                placeholder="Date of Birth" >
-                            <input ngModel
-                                type="text"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
-                                name="country_code"
-                                placeholder="Country Code" >
-                            <input ngModel
-                                type="tel"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
-                                name="phone_number"
-                                placeholder="Phone Number" >
-                            <input ngModel
-                                type="email"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
-                                name="email"
-                                placeholder="Email" >
-                            <input ngModel
-                                type="password"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
-                                name="password"
-                                placeholder="Password" >
-                            <input ngModel
-                                type="password"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
-                                name="confirm_password"
-                                placeholder="Confirm Password" >
-                            <button
-                                type="submit"
-                                class="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-dark focus:outline-none my-1"
-                                data-bs-dismiss="modal"
-                            >Create Account</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Sign In -->
-
-<div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
-    <div class="modal-dialog relative w-auto pointer-events-none">
-        <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-            <div class="modal-header flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                <button type="button" class="modal-close" data-bs-dismiss="modal">Close</button>
-            </div>
-            <div class="modal-body relative p-4">
-                <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-                    <div class="max-w-md w-full space-y-8">
-                        <h3 class="text-2xl opacity-50">Login Here</h3>
-                        <form class="mt-8 space-y-6" #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
-                            <div class="flex flex-col gap-4 rounded-md shadow-sm -space-y-px">
-                                <div>
-                                    <label for="email-address" class="sr-only">Email address</label>
-                                    <input ngModel id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
-                                </div>
-                                <div>
-                                    <label for="password" class="sr-only">Password</label>
-                                    <input ngModel id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
-                                </div>
-                                <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" data-bs-dismiss="modal">
-                                    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                                        <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                                        </svg>
-                                    </span>
-                                    Sign in
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Navbar -->
-
 <main class="flex flex-col h-screen">
-<nav class="bg-gray-800 py-6">
-    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div class="flex-1 flex items-center justify-between sm:items-stretch">
-            <a href="/">
-                <div class="flex-shrink-0 flex items-center">
-                    <h1 class="text-white text-xl md:text-2xl uppercase font-semibold">SAMP Airways</h1>
-                    <img src="assets/logo.png" alt="SAMP Airways" class="h-12 w-auto">
-                </div>
-            </a>
-            <div class="flex space-x-4">
-                <button class="cursor-pointer hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium" *ngIf="!userLoggedIn" data-bs-toggle="modal" data-bs-target="#signupModal">SignUp</button>
-                <button class="cursor-pointer hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium" *ngIf="!userLoggedIn" data-bs-toggle="modal" data-bs-target="#signinModal">Login</button>
-                <a href="/profile" class="cursor-pointer hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium" *ngIf="userLoggedIn" >Profile</a>
-                <button (click)="logout()" class="cursor-pointer hover:bg-gray-900 hover:text-white bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium" *ngIf="userLoggedIn">Logout</button>
-            </div>
 
+    <app-navbar></app-navbar>
+    <!-- Body -->
+
+    <body class="flex-grow">
+        <router-outlet></router-outlet>
+    </body>
+
+    <!-- Footer -->
+
+    <footer class="w-full bg-gray-800 text-[#ffffff]">
+        <div class="max-w-3xl mx-auto py-6 flex items-center justify-center">
+            <h1>Thank you for visiting SAMP Airlines Website</h1>
         </div>
-    </div>
-</nav>
-
-<!-- Body -->
-
-<body class="flex-grow">
-    <router-outlet></router-outlet>
-</body>
-
-<!-- Footer -->
-
-<footer class="w-full bg-gray-800 text-[#ffffff]">
-    <div class="max-w-3xl mx-auto py-6 flex items-center justify-center">
-        <h1>Thank you for visiting SAMP Airlines Website</h1>
-    </div>
-</footer>
+    </footer>
 </main>

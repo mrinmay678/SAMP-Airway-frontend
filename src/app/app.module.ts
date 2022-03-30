@@ -7,10 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { ProfileModule } from './profile/profile.module';
 import { FlightsModule } from './flights/flights.module';
 import { ListingModule } from './listing/listing.module';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

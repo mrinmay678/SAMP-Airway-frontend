@@ -19,6 +19,7 @@ export class FlightsComponent implements OnInit {
   adult:number = 0;
   child:number = 0;
   fare:number = 0;
+  multiplePassengerState = false;
   passengers: FormArray = new FormArray([]);
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -37,17 +38,29 @@ export class FlightsComponent implements OnInit {
     });
   }
 
+  multiPassenger = new FormGroup({
+    first_name: new FormControl(''),
+    last_name: new FormControl(''),
+    email: new FormControl(''),
+    phone_number: new FormControl(''),
+    age: new FormControl(''),
+    gender: new FormControl(''),
+  })
+
   confirmBooking() :void {
-     
     // this.flightService.bookTicket(data).subscribe(res => {
       
     // });
     confirm("Do you want to book the tickets?");
   }
 
-  onAddPassenger() :void {
-    this.passengers.push({
-      
-    });
+  
 
+  onAddPassenger(data:any) :void {
+    this.multiplePassengerState = true;
+    console.log(data);
+    // this.passengers.push({
+      
+    // });
+  }
 }

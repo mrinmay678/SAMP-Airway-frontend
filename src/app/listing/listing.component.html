@@ -3,7 +3,8 @@
     place-content-center gap-6 bg-gray-800 pb-10" #searchFlight="ngForm" (ngSubmit)="getFlight(searchFlight.value)">
     <div class="flex w-full md:w-auto flex-row items-center justify-between text-center text-white md:gap-x-4">
       <label for="#source">Source</label>
-      <select ngModel id="source" name="source" type="text" class="flex items-center text-center text-[#000000] w-1/2 md:w-auto h-10 rounded-md" required>
+      <select ngModel id="source" name="source" type="text" class="flex items-center justify-center text-[#000000] w-1/2 md:w-auto h-10 rounded-md" required>
+        <option value="" selected disabled>Select Source</option>
         <optgroup label={{loc.country}} *ngFor="let loc of locations">
           <option *ngFor="let city of loc.cities" value={{city.id}}>{{city.name}}</option>
         </optgroup>
@@ -11,7 +12,8 @@
     </div>
     <div class="flex w-full md:w-auto flex-row items-center justify-between text-center text-white md:gap-x-4">
       <label for="#destination">Destination</label>
-      <select ngModel id="destination" name="destination" type="text" class="flex items-center text-center text-[#000000] w-1/2 md:w-auto h-10 rounded-md" required>
+      <select ngModel id="destination" name="destination" type="text" class="flex items-center text-[#000000] w-1/2 md:w-60 h-10 rounded-md" required>
+        <option value="" selected disabled>Select Destination</option>
         <optgroup label={{loc.country}} *ngFor="let loc of locations">
           <option *ngFor="let city of loc.cities" value={{city.id}}>{{city.name}}</option>
         </optgroup>
@@ -19,21 +21,45 @@
     </div>
     <div class="flex w-full md:w-auto flex-row items-center justify-between text-center text-white md:gap-x-4">
       <label for="#departure">Select Date</label>
-      <input ngModel type="date" name="departure" id="departure" class="flex items-center text-center text-[#000000] w-1/2 md:w-auto h-10 rounded-md" min={{today_date}} required>
+      <input ngModel type="date" name="departure" id="departure" class="flex items-center text-[#000000] w-1/2 md:w-60 h-10 rounded-md" min={{today_date}} required>
     </div>
-    <input type="submit" name="search" id="search" value="Search" class="w-1/2 md:w-auto text-white bg-[#4d4dff] px-4 py-2.5 rounded-md cursor-pointer">
+    <input type="submit" name="search" id="search" value="Search" class="w-1/2 md:w-auto text-white bg-[#4d4dff] px-4 mt-6 md:mt-0 py-2.5 rounded-md cursor-pointer">
   </form>
 
-  <p class="text-med text-xl my-3 ml-6" *ngIf="tableData" ></p>
-  <table class="border border-slate-600 w-full text-center justify-center" *ngIf="tableData">
-    <tr>
-      <th class= "border border-slate-600 w-60 px-4 md:px-6 py-3" *ngFor="let columns of headers" scope="col">{{columns}}</th>
-    </tr>
-    <tr *ngFor="let row of rows" class="px-6 py-6" >
-      <td><a href="/flight/{{row.id}}">{{row.flight_name}}</a></td>
-      <td><a href="/flight/{{row.id}}">{{row.dept}}</a></td>
-      <td><a href="/flight/{{row.id}}">{{row.arr}}</a></td>
-      <td><a href="/flight/{{row.id}}">{{row.cost}}</a></td>
-    </tr>
-  </table>
+  <div class="hidden md:flex w-full bg-[#f0f0f0] pt-10 pb-10 items-center justify-center" *ngIf="tableData">
+    <div class="border rounded-lg w-auto p-4 bg-[#ffffff]" >
+      <table class="text-left">
+        <tr>
+          <th class= "text-xl w-auto px-3 py-3" *ngFor="let columns of headers" scope="col">{{columns}}</th>
+        </tr>
+        <tr *ngFor="let row of rows" >
+          <td class= "text-2xl w-60 px-3 py-6">{{row.flight_name}}</td>
+          <td class= "text-lg w-60 px-3 py-6">{{row.dept}}</td>
+          <td class= "text-lg w-60 px-3 py-6">{{row.arr}}</td>
+          <td class= "text-semibold text-3xl w-40 px-3 py-6">{{row.cost}}</td>
+          <td class= "text-lg w-auto px-3 py-6"><a class="p-3 rounded-lg bg-[#0080fe] text-[#ffffff]" href="/flight/{{row.id}}">Book Now</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="flex flex-col gap-y-6 md:hidden bg-[#f0f0f0] pt-10 pb-10 items-center justify-center" *ngIf="tableData">
+    <div class="flex flex-col w-4/5 bg-[#ffffff] p-4 rounded-lg" id="accordionExample" *ngFor="let row of rows">
+      <div class="flex flex-row justify-between items-center">
+        <p class="text-semibold text-3xl">{{row.flight_name}}</p>
+        <p class="text-semibold text-2xl">{{row.cost}}</p>
+      </div>
+      <div class="flex flex-row pt-3 justify-between items-end">
+        <div class="flex flex-col w-auto gap-y-2 i text-left">
+          <p class="text-bold text-lg flex flex-col">
+          Departure:
+          <span class="text-semibold text-base">{{row.dept}}</span>
+          </p>
+          <p class="text-bold text-lg flex flex-col">
+          Arrival:
+          <span class="text-semibold text-lg">{{row.arr}}</span></p>
+        </div>
+        <a class="p-3 h-12 text-center text-lg flex items-center justify-center rounded-lg bg-[#0080fe] text-[#ffffff]" href="/flight/{{row.id}}">Book Now</a>
+      </div>
+    </div>
+  </div>
 </section>
