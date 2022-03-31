@@ -1,20 +1,101 @@
-<div class="py-12 bg-white flex flex-col gap-5 px-6 md:px-60">
-  <h2 class="text-2xl text-base text-gray-800 font-semibold ">Welcome To Your Profile :-)</h2>
-  <p class="mt-2 text-2xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl">Profile Details:- </p>
-  <p class="mt-4 max-w-2xl text-xl font-bold text-darkgray-800 ">Name : <span class="font-semibold"> {{name}} </span></p>
-  <p class="mt-4 max-w-2xl text-xl font-bold text-gray-900 ">Email: <span class="font-semibold"> {{email}}</span></p>
-  <p class="mt-4 max-w-2xl text-xl font-bold text-gray-900 "> Mobile: <span class="font-semibold">{{phone_number}}</span> </p>
-  <p class="mt-4 max-w-2xl text-xl font-bold text-gray-900 "> Date of Birth: <span class="font-semibold">{{dob}}</span> </p>
-  <table class="border border-slate-600 w-full text-center justify-center" *ngIf="tableData">
-    <tr>
-      <th class= "border border-slate-600 w-60 px-4 md:px-6 py-3" *ngFor="let columns of headers" scope="col">{{columns}}</th>
-    </tr>
-    <tr *ngFor="let row of rows" class="px-6 py-6" >
-      <td>{{row.flight_name}}</td>
-      <td>{{row.source}}</td>
-      <td>{{row.dest}}</td>
-      <td>{{row.depart}}</td>
-    </tr>
-  </table>
+<!DOCTYPE html>
+<html lang="en">
+<body class="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover" style="background-image:url('https://c4.wallpaperflare.com/wallpaper/1017/525/123/the-sky-aviation-the-plane-background-wallpaper-preview.jpg');">
+
+  <h1 class="pt-20 font-medium text-5xl text-center text-red-600">Welcome to Your Profile</h1>
+
+  <div class="mt-28 max-w-4xl flex flex-col md:flex-row justify-between items-center h-auto lg:h-screen flex-wrap mx-60 my-32 lg:my-0">
+
+
+	<div id="profile" class="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-white opacity-75 mx-6 lg:max-w-md">
+
+
+		<div class="p-4 md:p-12 text-center lg:text-left">
+
+
+      <p class="mt-2 text-2xl leading-8 font-bold tracking-tight text-center text-black sm:text-4xl">Profile Details:- </p>
+  <p class="mt-4 max-w-4xl text-xl font-bold text-blue-800 ">Name : <span class="font-semibold"> {{name}} </span></p>
+  <p class="mt-4 max-w-4xl text-xl font-bold text-blue-700 ">Email: <span class="font-semibold"> {{email}}</span></p>
+  <p class="mt-4 max-w-4xl text-xl font-bold text-blue-700 "> Mobile: <span class="font-semibold">{{phone_number}}</span> </p>
+  <p class="mt-4 max-w-4xl text-xl font-bold text-blue-700"> Date of Birth: <span class="font-semibold">{{dob}}</span> </p>
+
+
+
+
+
+
+		</div>
+
+	</div>
+
+
+	<div class="-mx-60 w-full lg:w-2/5">
+    <p class="ml-24 text-2xl leading-8 font-bold tracking-tight text-center bg-white text-black sm:text-4xl">Booking Details:- </p>
+		<table class="border border-t-slate-100 w-full bg-blue-400 text-center justify-center" *ngIf="tableData">
+
+      <tr>
+        <th class= "border border-slate-100 w-60 px-4 md:px-6 py-3" *ngFor="let columns of headers" scope="col">{{columns}}</th>
+      </tr>
+      <tr *ngFor="let row of rows" class="px-6 py-6" >
+        <td>{{row.flight_name}}</td>
+        <td>{{row.source}}</td>
+        <td>{{row.dest}}</td>
+        <td>{{row.depart}}</td>
+      </tr>
+    </table>
+
+	</div>
+
+
+
+	  <!--<div class="absolute top-0 right-0 h-12 w-18 p-4">
+		<button class="js-change-theme focus:outline-none">🌙</button>
+	  </div>-->
+
 </div>
+
+	<!--<script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
+	<script src="https://unpkg.com/tippy.js@4"></script>
+	<script>
+
+		tippy('.link',{
+		  placement: 'bottom'
+		})
+
+
+		const toggle = document.querySelector('.js-change-theme');
+		const body = document.querySelector('body');
+		const profile = document.getElementById('profile');
+
+
+		toggle.addEventListener('click', () => {
+
+		  if (body.classList.contains('text-gray-900')) {
+			toggle.innerHTML = "☀️";
+			body.classList.remove('text-gray-900');
+			body.classList.add('text-gray-100');
+			profile.classList.remove('bg-white');
+			profile.classList.add('bg-gray-900');
+		  } else
+		  {
+			toggle.innerHTML = "🌙";
+			body.classList.remove('text-gray-100');
+			body.classList.add('text-gray-900');
+			profile.classList.remove('bg-gray-900');
+			profile.classList.add('bg-white');
+
+		  }
+		});
+
+    </script>
+
+
+  -->
+
+</body>
+
+</html>
+
+
+
 
