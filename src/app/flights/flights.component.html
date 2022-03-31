@@ -31,12 +31,44 @@
                 <input type="tel" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="phone_number" name="phone_number" placeholder="Phone Number"/>
                 <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="age" name="age" placeholder="Age"/>
                 <select class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="gender" name="gender" >
-                    <option value="" selected disabled>Select Gender</option>
-                    <option value="male">Male</option>
+                  <option value="" selected disabled>Select Gender</option>
+                  <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
-                </select>
-            </div>
+                  </select>
+
+                </div>
+
+                <!-- eta add korechi html -->
+
+                <table formArrayName="passengers" *ngIf="multiplePassengerState">
+
+              <tr>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Action</th>
+
+                </tr>
+                <tr *ngFor="let pc of passengers.controls;let i = index">
+                   <td>{{i+1}}</td>
+                 <td><input type=text formControlName="passengerName" name="pname"></td>
+                 <td><input type=text formControlName="passengerAge"></td>
+                 <td>
+                    <select formControlName="passengerGender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                 </td>
+                 <!-- <td><input type=button value=Delete  (click)="deletePassenger(i)"></td> -->
+              </tr>
+           </table>
+           <!-- <input type=button value="Add Passenger"  (click)="addPassenger()"> -->
+
+
+
             <div class="flex flex-col justify-between items-center md:flex-row">
                 <p class="flex flex-row mt-4 max-w-2xl text-2xl text-gray-900 font-bold">Total Amount: -
                     <span class="text-xl flex h-8 p-3 ml-2 border border-gray-700 rounded-lg items-center font-semibold">Rs
