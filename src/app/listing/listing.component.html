@@ -3,7 +3,8 @@
     place-content-center gap-6 bg-gray-800 pb-10" #searchFlight="ngForm" (ngSubmit)="getFlight(searchFlight.value)">
     <div class="flex w-full md:w-auto flex-row items-center justify-between text-center text-white md:gap-x-4">
       <label for="#source">Source</label>
-      <select ngModel id="source" name="source" type="text" class="flex items-center text-center text-[#000000] w-1/2 md:w-auto h-10 rounded-md" required>
+      <select ngModel id="source" name="source" type="text" class="flex items-center justify-center text-[#000000] w-1/2 md:w-auto h-10 rounded-md" required>
+        <option value="" selected disabled>Select Source</option>
         <optgroup label={{loc.country}} *ngFor="let loc of locations">
           <option *ngFor="let city of loc.cities" value={{city.id}}>{{city.name}}</option>
         </optgroup>
@@ -11,7 +12,8 @@
     </div>
     <div class="flex w-full md:w-auto flex-row items-center justify-between text-center text-white md:gap-x-4">
       <label for="#destination">Destination</label>
-      <select ngModel id="destination" name="destination" type="text" class="flex items-center text-center text-[#000000] w-1/2 md:w-auto h-10 rounded-md" required>
+      <select ngModel id="destination" name="destination" type="text" class="flex items-center text-[#000000] w-1/2 md:w-60 h-10 rounded-md" required>
+        <option value="" selected disabled>Select Destination</option>
         <optgroup label={{loc.country}} *ngFor="let loc of locations">
           <option *ngFor="let city of loc.cities" value={{city.id}}>{{city.name}}</option>
         </optgroup>
@@ -19,21 +21,164 @@
     </div>
     <div class="flex w-full md:w-auto flex-row items-center justify-between text-center text-white md:gap-x-4">
       <label for="#departure">Select Date</label>
-      <input ngModel type="date" name="departure" id="departure" class="flex items-center text-center text-[#000000] w-1/2 md:w-auto h-10 rounded-md" min={{today_date}} required>
+      <input ngModel type="date" name="departure" id="departure" class="flex items-center text-[#000000] w-1/2 md:w-60 h-10 rounded-md" min={{today_date}} required>
     </div>
-    <input type="submit" name="search" id="search" value="Search" class="w-1/2 md:w-auto text-white bg-[#4d4dff] px-4 py-2.5 rounded-md cursor-pointer">
+    <input type="submit" name="search" id="search" value="Search" class="w-1/2 md:w-auto text-white bg-[#4d4dff] px-4 mt-6 md:mt-0 py-2.5 rounded-md cursor-pointer">
   </form>
 
-  <p class="text-med text-xl my-3 ml-6" *ngIf="tableData" ></p>
-  <table class="border border-slate-600 w-full text-center justify-center" *ngIf="tableData">
-    <tr>
-      <th class= "border border-slate-600 w-60 px-4 md:px-6 py-3" *ngFor="let columns of headers" scope="col">{{columns}}</th>
-    </tr>
-    <tr *ngFor="let row of rows" class="px-6 py-6" >
-      <td><a href="/flight/{{row.id}}">{{row.flight_name}}</a></td>
-      <td><a href="/flight/{{row.id}}">{{row.dept}}</a></td>
-      <td><a href="/flight/{{row.id}}">{{row.arr}}</a></td>
-      <td><a href="/flight/{{row.id}}">{{row.cost}}</a></td>
-    </tr>
-  </table>
+  <div class="hidden md:flex w-full bg-[#f0f0f0] pt-10 pb-10 items-center justify-center" *ngIf="tableData">
+    <div class="border rounded-lg w-auto p-4 bg-[#ffffff]" >
+      <table class="text-left">
+        <tr>
+          <th class= "text-xl w-auto px-3 py-3" *ngFor="let columns of headers" scope="col">{{columns}}</th>
+        </tr>
+        <tr *ngFor="let row of rows" >
+          <td class= "text-2xl w-60 px-3 py-6">{{row.flight_name}}</td>
+          <td class= "text-lg w-60 px-3 py-6">{{row.dept}}</td>
+          <td class= "text-lg w-60 px-3 py-6">{{row.arr}}</td>
+          <td class= "text-semibold text-3xl w-40 px-3 py-6">{{row.cost}}</td>
+          <td class= "text-lg w-auto px-3 py-6"><a class="p-3 rounded-lg bg-[#0080fe] text-[#ffffff]" href="/flight/{{row.id}}">Book Now</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="flex flex-col gap-y-6 md:hidden bg-[#f0f0f0] pt-10 pb-10 items-center justify-center" *ngIf="tableData">
+    <div class="flex flex-col w-4/5 bg-[#ffffff] p-4 rounded-lg" id="accordionExample" *ngFor="let row of rows">
+      <div class="flex flex-row justify-between items-center">
+        <p class="text-semibold text-3xl">{{row.flight_name}}</p>
+        <p class="text-semibold text-2xl">{{row.cost}}</p>
+      </div>
+      <div class="flex flex-row pt-3 justify-between items-end">
+        <div class="flex flex-col w-auto gap-y-2 i text-left">
+          <p class="text-bold text-lg flex flex-col">
+          Departure:
+          <span class="text-semibold text-base">{{row.dept}}</span>
+          </p>
+          <p class="text-bold text-lg flex flex-col">
+          Arrival:
+          <span class="text-semibold text-lg">{{row.arr}}</span></p>
+        </div>
+        <a class="p-3 h-12 text-center text-lg flex items-center justify-center rounded-lg bg-[#0080fe] text-[#ffffff]" href="/flight/{{row.id}}">Book Now</a>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="pt-12 pb-8 h-12 text-center text-lg justify-center">SAMP Airways provides the best of Airway experience.<br>We believe in making dreams real.<br>Thank you for choosing SAMP airways.<br>Our customers are our biggest support and concern.</div> -->
+<div><section class="text-gray-600 body-font center">
+  <div class="container px-5 py-12 flex flex-col items-center justify-center">
+    <div class="flex flex-col text-center w-full mb-20">
+      <h1 class="pt-8  text-2xl font-medium title-font mb-3 text-gray-900 tracking-widest">OUR TEAM</h1>
+      <!-- <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.</p> -->
+    </div>
+    <div class="flex flex-wrap w-auto -m-4">
+      <div class="p-4 lg:w-1/2">
+        <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+          <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="assets/m-profile.jfif">
+          <div class="flex-grow sm:pl-8">
+            <h2 class="title-font font-medium text-lg text-gray-900">Mrinmay Bhattacharya</h2>
+            <h3 class="text-gray-500 mb-3">Full-Stack Developer</h3>
+            <p class="mb-4">email: mrinmay678@gmail.com</p>
+            <span class="inline-flex">
+              <a class="text-gray-500">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                </svg>
+              </a>
+              <a class="ml-2 text-gray-500">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                </svg>
+              </a>
+              <a class="ml-2 text-gray-500">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                </svg>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 lg:w-1/2">
+        <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+          <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="assets/selfie.jpg">
+          <div class="flex-grow sm:pl-8">
+            <h2 class="title-font font-medium text-lg text-gray-900">Sattwama Basu</h2>
+            <h3 class="text-gray-500 mb-3">Designer</h3>
+            <p class="mb-4">email: sattwama2000@gmail.com</p>
+            <span class="inline-flex">
+              <a class="text-gray-500">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                </svg>
+              </a>
+              <a class="ml-2 text-gray-500">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                </svg>
+              </a>
+              <a class="ml-2 text-gray-500">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                </svg>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 lg:w-1/2">
+        <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+          <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="assets/a-profile.jfif">
+          <div class="flex-grow sm:pl-8">
+            <h2 class="title-font font-medium text-lg text-gray-900">Anirudhdha Nath</h2>
+            <h3 class="text-gray-500 mb-3">UI Developer</h3>
+            <p class="mb-4">email: anirudhdhda_venu'sfav@gmail.com</p>
+            <span class="inline-flex">
+              <a class="text-gray-500">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                </svg>
+              </a>
+              <a class="ml-2 text-gray-500">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                </svg>
+              </a>
+              <a class="ml-2 text-gray-500">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                </svg>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 lg:w-1/2">
+        <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+          <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="assets/p-profile.jfif">
+          <div class="flex-grow sm:pl-8">
+            <h2 class="title-font font-medium text-lg text-gray-900">Parijat Guha</h2>
+            <h3 class="text-gray-500 mb-3">UI Developer</h3>
+            <p class="mb-4">email: lfcparijat@gmail.com</p>
+            <span class="inline-flex">
+              <a class="text-gray-500">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                </svg>
+              </a>
+              <a class="ml-2 text-gray-500">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                </svg>
+              </a>
+              <a class="ml-2 text-gray-500">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                </svg>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section></div>
 </section>
