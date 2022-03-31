@@ -38,16 +38,16 @@ export class FlightsComponent implements OnInit {
   }
 
   confirmBooking() :void {
-     
+
     // this.flightService.bookTicket(data).subscribe(res => {
-      
+
     // });
     confirm("Do you want to book the tickets?");
   }
 
-  onAddPassenger() :void {
-    this.passengers.push({
-      
-    });
+  // onAddPassenger() :void {
+  //   this.passengers.push({
+
+  // });
 
 }

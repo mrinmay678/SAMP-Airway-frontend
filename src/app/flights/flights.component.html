@@ -14,38 +14,39 @@
     <div class="flex flex-col">
         <form class="bg-white px-6 py-8 rounded shadow-md text-black w-3/4">
             <h1 class="mb-8 text-2xl text-medium ">Add Passengers</h1>
-            <div class="grid grid-cols-2 gap-6" *ngFor="let passenger of passengers; let i = index">
-                <input 
+            <!-- <div class="grid grid-cols-2 gap-6" *ngFor="let passenger of passengers; let i = index"-->
+            <div class="grid grid-cols-2 gap-6">
+                <input
                     type="text"
                     class="block border border-grey-light w-full p-3 rounded mb-4"
                     name="first_name"
                     placeholder="First Name" />
-                <input 
+                <input
                     type="text"
                     class="block border border-grey-light w-full p-3 rounded mb-4"
                     name="last_name"
                     placeholder="Last Name" />
-                <input 
+                <input
                     type="tel"
                     class="block border border-grey-light w-full p-3 rounded mb-4"
                     name="phone_number"
-                    placeholder="Phone Number" />  
-                <input 
+                    placeholder="Phone Number" />
+                <input
                     type="date"
                     class="block border border-grey-light w-full p-3 rounded mb-4"
                     name="dob"
                     placeholder="Date of Birth" />
-                <input 
+                <input
                     type="email"
                     class="block border border-grey-light w-full p-3 rounded mb-4"
                     name="email"
                     placeholder="Email" />
             </div>
-            <button type="button" (click)="onAddPassenger()" class="btn btn-sm btn-warning">Add Hobby</button>
+            <!-- <button type="button" (click)="onAddPassenger()" class="btn btn-sm btn-warning">Add Hobby</button> -->
             <div class="flex flex-col justify-between items-center md:flex-row">
                 <p class="flex flex-row mt-4 max-w-2xl text-2xl text-gray-900 font-bold">Total Amount: - <span class="text-xl flex h-8 p-3 ml-2 border border-gray-700 rounded-lg items-center font-semibold">Rs {{fare}}/- </span></p>
                 <button (click)="confirmBooking()" type="submit" class="w-full md:w-60 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Confirm Booking!</button>
-            </div>    
+            </div>
         </form>
     </div>
 
@@ -53,7 +54,7 @@
 
 
 
-    
+
     <!-- <button (click)="confirmBooking()" type="button" class="w-full md:w-60 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Confirm Booking!</button> -->
 </div>
 
