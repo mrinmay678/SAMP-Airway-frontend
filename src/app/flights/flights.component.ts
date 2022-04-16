@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { FlightsService } from './flights.service';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-flights',
@@ -10,7 +10,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class FlightsComponent implements OnInit {
   public flightId:any;
-  constructor(public flightService: FlightsService, private route: ActivatedRoute, private router: Router) { }
+  constructor(public flightService: FlightsService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { }
   flight_name="";
   departure = "";
   arrival="";
@@ -19,8 +19,7 @@ export class FlightsComponent implements OnInit {
   adult:number = 0;
   child:number = 0;
   fare:number = 0;
-  multiplePassengerState = false;
-  passengers: FormArray = new FormArray([]);
+  total_fare:number = 0;
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = params.get('id');
@@ -35,32 +34,45 @@ export class FlightsComponent implements OnInit {
       this.adult = res.data.adult;
       this.child = res.data.child;
       this.fare = res.data.price;
+      this.total_fare = res.data.price;
     });
   }
 
-  multiPassenger = new FormGroup({
-    first_name: new FormControl(''),
-    last_name: new FormControl(''),
-    email: new FormControl(''),
-    phone_number: new FormControl(''),
-    age: new FormControl(''),
-    gender: new FormControl(''),
+  passenger(): FormGroup {
+    return this.fb.group({
+      first_name: [null, Validators.required],
+      last_name: [null, Validators.required],
+      email: [null, Validators.required],
+      phone_number: [null, Validators.required],
+      age: [null, Validators.required],
+      gender: [null, Validators.required],
+    })
+  }
+  multiple_passenger = this.fb.group({
+    payment: [null, Validators.required],
+    passengers: this.fb.array([this.passenger()], Validators.required)
   })
+  get passengers():FormArray{
+    return <FormArray> this.multiple_passenger.get('passengers');
+  }
 
   confirmBooking() :void {
     // this.flightService.bookTicket(data).subscribe(res => {
       
     // });
-    confirm("Do you want to book the tickets?");
+    this.total_fare = this.fare*this.passengers.length;
+    if(confirm("Do you want to book the tickets?")) {
+      console.log(this.multiple_passenger.value);
+    }
+
   }
-
-  
-
-  onAddPassenger(data:any) :void {
-    this.multiplePassengerState = true;
-    console.log(data);
-    // this.passengers.push({
-      
-    // });
+  onAddPassenger() :void {
+    this.passengers.push(this.passenger());
+    this.total_fare = this.fare*this.passengers.length;
+  }
+  removePassenger(i:number) :void {
+    if(this.passengers.length>1)
+      this.passengers.removeAt(i);
+    this.total_fare = this.fare*this.passengers.length;
   }
 }

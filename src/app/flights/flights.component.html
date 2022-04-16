@@ -20,32 +20,38 @@
             <span class="font-semibold">{{arrival}}</span>
         </p>
     </div>
-    <form class="flex flex-col w-1/2" [formGroup]="multiPassenger">
-        <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-            <h1 class="mb-8 text-2xl text-medium ">Add Passengers</h1>
-            <!-- <div class="grid grid-cols-2 gap-6" *ngFor="let passenger of passengers; let i = index"> -->
-            <div class="grid grid-cols-2 gap-6"  *ngIf="!multiplePassengerState">
-                <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="first_name" name="first_name" placeholder="First Name"/>
-                <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="last_name" name="last_name" placeholder="Last Name"/>
-                <input type="email" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="email" name="email" placeholder="Email"/>
-                <input type="tel" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="phone_number" name="phone_number" placeholder="Phone Number"/>
-                <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="age" name="age" placeholder="Age"/>
-                <select class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="gender" name="gender" >
-                    <option value="" selected disabled>Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-            <div class="flex flex-col justify-between items-center md:flex-row">
-                <p class="flex flex-row mt-4 max-w-2xl text-2xl text-gray-900 font-bold">Total Amount: -
-                    <span class="text-xl flex h-8 p-3 ml-2 border border-gray-700 rounded-lg items-center font-semibold">Rs
-                        {{fare}}/-
-                    </span>
-                </p>
-                <div class="flex flex-end justify-end pt-4">
-                    <input type="submit" form="ngForm" (click)="onAddPassenger(multiPassenger.value)" class="w-60 h-10 bg-purple-500 text-white font-medium rounded-lg text-sm" value="Add New Passenger" >
+    <form class="flex flex-col w-1/2" [formGroup]="multiple_passenger" (ngSubmit)="confirmBooking()">
+        <div formArrayName="passengers" *ngFor="let t of passengers.controls; let i = index">
+            <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+                <div class="flex flex-row justify-between items-center mb-8">
+                    <h1 class="text-2xl text-medium ">Passenger {{i+1}}</h1>
+                    <div class="flex flex-end justify-end pt-4" *ngIf="i>0">
+                        <button (click)="removePassenger(i)" class="w-60 h-10 bg-blue-500 text-white font-semibold rounded-lg text-sm">Remove Passenger</button>
+                    </div>        
                 </div>
+                <div class="grid grid-cols-2 gap-6" [formGroupName]="i">
+                    <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="first_name" id="{{'first_name' + 1}}" placeholder="First Name" />
+                    <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="last_name" id="{{'last_name' + 1}}" placeholder="Last Name" />
+                    <input type="email" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="email" id="{{'email' + 1}}" placeholder="Email" />
+                    <input type="tel" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="phone_number" id="{{'phone_number' + 1}}" placeholder="Phone Number" />
+                    <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="age" id="{{'age' + 1}}" placeholder="Age" />
+                    <select class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="gender" id="{{'gender' + 1}}" >
+                        <option value="" selected disabled>Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col justify-between items-center md:flex-row">
+            <p class="flex flex-row mt-4 max-w-2xl text-2xl text-gray-900 font-bold">Total Amount: -
+                <span class="text-xl flex h-8 p-3 ml-2 border border-gray-700 rounded-lg items-center font-semibold">Rs
+                    {{total_fare}}/-
+                </span>
+            </p>
+            <div class="flex flex-end justify-end pt-4">
+                <button type="button" (click)="onAddPassenger()" class="w-60 h-10 bg-purple-500 text-white font-semibold rounded-lg text-sm">Add New Passenger</button>
             </div>
         </div>
         <div class="flex flex-row justify-between mt-6">
@@ -54,20 +60,20 @@
                 </p>
                 <div class="flex flex-row gap-6">
                     <div class="flex flex-row gap-2 items-center justify-center ">
-                        <input type="radio" id="paytm" name="payment" value="paytm">
+                        <input type="radio" id="paytm" formControlName="payment" value="paytm">
                         <label for="paytm">Paytm</label><br>
                     </div>
                     <div class="flex flex-row gap-2 items-center justify-center ">
-                        <input type="radio" id="gpay" name="payment" value="gpay">
+                        <input type="radio" id="gpay" formControlName="payment" value="gpay">
                         <label for="gpay">Google Pay</label><br>
                     </div>
                     <div class="flex flex-row gap-2 items-center justify-center ">
-                        <input type="radio" id="phonepe" name="payment" value="phonepe">
+                        <input type="radio" id="phonepe" formControlName="payment" value="phonepe">
                         <label for="phonepe">PhonePe</label>
                     </div>
                 </div>
             </div>
-            <button (click)="confirmBooking()" type="submit" class="w-full md:w-60 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Book Now!</button>
+            <button type="submit" class="w-full md:w-60 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Book Now!</button>
         </div>
     </form>
 </div>
