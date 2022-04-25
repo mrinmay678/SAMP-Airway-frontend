@@ -21,31 +21,21 @@ export class NavbarComponent implements OnInit {
   }
 
   login(data:any):void{
-    try{
-      this.authService.login(data).subscribe(res => {
+  
+    this.authService.login(data).subscribe(
+      (res) => {
         this.userLoggedIn = true;
         localStorage.setItem('access-token', res.data.access_token);
-        localStorage.setItem('refresh-token', res.data.refresh_token);
+      },
+      (err) => {
+        if(err.error.error == "INVALID_CREDENTIALS") {
+          alert("Bad Credentials");
+        }
+        else {
+          alert("Something went wrong");
+          console.log(err);
+        }
       });
-    }
-    catch(e:any){
-      if(e.message == "Access Token Expired"){
-        this.authService.refreshToken({ refresh_token : localStorage.getItem("refresh-token")}).subscribe(res => {
-          this.userLoggedIn = true;
-          localStorage.setItem('access-token', res.data.access_token);
-        })
-      }
-      else if(e.message == "Wrong Password") {
-        alert("Wrong Password");
-      }
-      else if(e.message == "User Not Found") {
-        alert("User Not Found");
-      }
-      else {
-        alert("Something went wrong");
-        console.log(e);
-      }
-    }
   }
 
   signup(data:any) :void{
@@ -53,7 +43,6 @@ export class NavbarComponent implements OnInit {
       this.authService.signup(data).subscribe(res => {
         this.userLoggedIn = true;
         localStorage.setItem('access-token', res.data.access_token);
-        localStorage.setItem('refresh-token', res.data.refresh_token);
       });
     }
     else{
@@ -62,7 +51,7 @@ export class NavbarComponent implements OnInit {
   }
 
   profile():void{
-
+    
   }
 
   logout():void{

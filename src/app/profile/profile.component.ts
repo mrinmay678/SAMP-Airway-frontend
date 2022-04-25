@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
         this.name=res.data.first_name +" "+ res.data.last_name;
         this.dob=res.data.dob;
         this.phone_number=res.data.country_code+res.data.phone_number;
-        this.rows=res.data.flights;
+        this.rows=res.data.tickets;
         if(this.rows!==[]) this.tableData=true;
     });
   }

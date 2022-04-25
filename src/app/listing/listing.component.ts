@@ -15,7 +15,7 @@ export class ListingComponent implements OnInit {
   constructor(public listingService: ListingService) { }
   ngOnInit(): void {
     this.listingService.getLocations().subscribe(res => {
-      this.locations = res.data.locations;
+      this.locations = res.data.location;
     });
   }
 

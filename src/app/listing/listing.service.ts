@@ -10,7 +10,7 @@ export class ListingService {
   constructor(private http:HttpClient) { }
 
   public getLocations(): Observable<any> {
-    return this.http.get<any>('https://mock-server-samp.herokuapp.com/location');
+    return this.http.get<any>('http://localhost:8085/public/location');
   }
   public getFlights(data:any): Observable<any> {
     

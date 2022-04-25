@@ -48,6 +48,7 @@ export class FlightsComponent implements OnInit {
       gender: [null, Validators.required],
     })
   }
+
   multiple_passenger = this.fb.group({
     payment: [null, Validators.required],
     passengers: this.fb.array([this.passenger()], Validators.required)
@@ -67,10 +68,12 @@ export class FlightsComponent implements OnInit {
 
   }
   onAddPassenger() :void {
+    console.log(this.multiple_passenger.value);
     this.passengers.push(this.passenger());
     this.total_fare = this.fare*this.passengers.length;
   }
   removePassenger(i:number) :void {
+    console.log(this.multiple_passenger.value);
     if(this.passengers.length>1)
       this.passengers.removeAt(i);
     this.total_fare = this.fare*this.passengers.length;
