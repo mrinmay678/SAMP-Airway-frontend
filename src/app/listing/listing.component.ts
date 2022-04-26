@@ -30,7 +30,10 @@ export class ListingComponent implements OnInit {
   getFlight(data:any) :void{
     this.listingService.getFlights(data).subscribe(res => {
       this.tableData = true;
-      this.rows = res.data.flights;
+      this.rows = res.data.trips;
+      if(this.rows.length == 0){
+        alert("No Flights Found");
+      }
     });
   }
 

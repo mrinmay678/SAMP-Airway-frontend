@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ListingComponent
   },
   {
-    path: 'flight/:id',
+    path: 'flight/:trip_id/:flight_id',
     component: FlightsComponent
   },
   {

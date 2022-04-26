@@ -17,8 +17,9 @@ export class ListingService {
     let params:any = new HttpParams();
     params = params.append('source', data.source);
     params = params.append('destination', data.destination);
-    params = params.append('departure', data.departure);
-    return this.http.get<any>('https://mock-server-samp.herokuapp.com/flights', {params: params});
+    params = params.append('departure_date', data.departure);
+    console.log(params);
+    return this.http.get<any>('http://localhost:8085/public/flights/search', {params: params});
   }
 
 }

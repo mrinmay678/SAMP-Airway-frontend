@@ -33,14 +33,14 @@
                     <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="first_name" id="{{'first_name' + 1}}" placeholder="First Name" />
                     <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="last_name" id="{{'last_name' + 1}}" placeholder="Last Name" />
                     <input type="email" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="email" id="{{'email' + 1}}" placeholder="Email" />
-                    <input type="tel" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="phone_number" id="{{'phone_number' + 1}}" placeholder="Phone Number" />
-                    <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="age" id="{{'age' + 1}}" placeholder="Age" />
-                    <select class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="gender" id="{{'gender' + 1}}" >
+                    <input type="tel" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="phone" id="{{'phone' + 1}}" placeholder="Phone Number" />
+                    <input type="number" class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="age" id="{{'age' + 1}}" placeholder="Age" />
+                    <!-- <select class="block border border-grey-light w-full p-3 rounded mb-4" formControlName="gender" id="{{'gender' + 1}}" >
                         <option value="" selected disabled>Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="other">Other</option>
-                    </select>
+                    </select> -->
                 </div>
             </div>
         </div>
@@ -73,6 +73,10 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" formControlName="username" value="{{username}}">
+            <input type="hidden" formControlName="trip" value="{{tripId}}">
+            <input type="hidden" formControlName="flight" value="{{flightId}}">
+            <input type="hidden" formControlName="total_fare" value="{{total_fare}}">
             <button type="submit" class="w-full md:w-60 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Book Now!</button>
         </div>
     </form>

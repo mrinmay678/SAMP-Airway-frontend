@@ -30,10 +30,10 @@
         </tr>
         <tr *ngFor="let row of rows" >
           <td class= "text-2xl w-60 px-3 py-6">{{row.flight_name}}</td>
-          <td class= "text-lg w-60 px-3 py-6">{{row.dept}}</td>
-          <td class= "text-lg w-60 px-3 py-6">{{row.arr}}</td>
-          <td class= "text-semibold text-3xl w-40 px-3 py-6">{{row.cost}}</td>
-          <td class= "text-lg w-auto px-3 py-6"><a class="p-3 rounded-lg bg-[#0080fe] text-[#ffffff]" href="/flight/{{row.id}}">Book Now</a></td>
+          <td class= "text-lg w-60 px-3 py-6">{{row.departure}}</td>
+          <td class= "text-lg w-60 px-3 py-6">{{row.arrival}}</td>
+          <td class= "text-semibold text-3xl w-40 px-3 py-6">Rs. {{row.fare}}</td>
+          <td class= "text-lg w-auto px-3 py-6"><a class="p-3 rounded-lg bg-[#0080fe] text-[#ffffff]" href="/flight/{{row.trip_id}}/{{row.flight_id}}">Book Now</a></td>
         </tr>
       </table>
     </div>
@@ -42,19 +42,19 @@
     <div class="flex flex-col w-4/5 bg-[#ffffff] p-4 rounded-lg" id="accordionExample" *ngFor="let row of rows">
       <div class="flex flex-row justify-between items-center">
         <p class="text-semibold text-3xl">{{row.flight_name}}</p>
-        <p class="text-semibold text-2xl">{{row.cost}}</p>
+        <p class="text-semibold text-2xl">{{row.fare}}</p>
       </div>
       <div class="flex flex-row pt-3 justify-between items-end">
         <div class="flex flex-col w-auto gap-y-2 i text-left">
           <p class="text-bold text-lg flex flex-col">
           Departure:
-          <span class="text-semibold text-base">{{row.dept}}</span>
+          <span class="text-semibold text-base">{{row.departure}}</span>
           </p>
           <p class="text-bold text-lg flex flex-col">
           Arrival:
-          <span class="text-semibold text-lg">{{row.arr}}</span></p>
+          <span class="text-semibold text-lg">{{row.arrival}}</span></p>
         </div>
-        <a class="p-3 h-12 text-center text-lg flex items-center justify-center rounded-lg bg-[#0080fe] text-[#ffffff]" href="/flight/{{row.id}}">Book Now</a>
+        <a class="p-3 h-12 text-center text-lg flex items-center justify-center rounded-lg bg-[#0080fe] text-[#ffffff]" href="/flight/{{row.trip_id}}">Book Now</a>
       </div>
     </div>
   </div>
