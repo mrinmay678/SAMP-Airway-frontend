@@ -15,7 +15,7 @@ export class ListingComponent implements OnInit {
   constructor(public listingService: ListingService) { }
   ngOnInit(): void {
     this.listingService.getLocations().subscribe(res => {
-      this.locations = res.data.locations;
+      this.locations = res.data.location;
     });
   }
 
@@ -30,10 +30,13 @@ export class ListingComponent implements OnInit {
   getFlight(data:any) :void{
     this.listingService.getFlights(data).subscribe(res => {
       this.tableData = true;
-      this.rows = res.data.flights;
+      this.rows = res.data.trips;
+      if(this.rows.length == 0){
+        alert("No Flights Found");
+      }
     });
   }
 
-  headers=["Flight Name","Departure Time","Arrival Time","Cost"];
+  headers=["Flight Name","Departure Time","Arrival Time","Fare"];
 
 }
